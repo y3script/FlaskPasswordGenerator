@@ -19,7 +19,7 @@ python main.py
 
 After Running The Script Open the Url in the Browser
 
-![Password Generator](https://i.ibb.co/bLGWZ7W/MAOrdw-RRGn.png)
+![Password](https://i.ibb.co/bLGWZ7W/MAOrdw-RRGn.png)
 
 
 ## License
