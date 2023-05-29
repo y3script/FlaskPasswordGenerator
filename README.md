@@ -24,7 +24,7 @@ After Running The Script Open the Url in the Browser
 
 ## License
 
-Pintrestit is released under the GPL-3.0 license.
+Password Generator is released under the GPL-3.0 license.
 
 <br>
 <br>
