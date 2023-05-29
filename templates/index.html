@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/styles.css')}}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-lock-fill" style="color: rgb(0,0,0);">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+                    </svg></span><span>PGen</span></a></div>
+    </nav>
+    <div class="container main">
+        <h1>Password Generator</h1>
+        <input type="text" class="input-group shadow-none" disabled id="password_result">
+        <div class="checkboxs">
+            <Label>Use symbols ? :&nbsp;</Label><input type="checkbox" id="symbols"><br>
+            <label>Password length:</label>
+            <div style="width: 150px;display: inline-flex;margin-left: 10px;"><tc-range-slider min="8" max="20" step="1" id="s-length" slider-bg-fill="#ffc43d"></tc-range-slider></div>
+            &nbsp;<span id="p-length">8</span>
+        </div>
+        <button class="btn btn-primary" type="button" id="Generate">Generate Password</button>
+    </div>
+    <footer>
+        <div>
+            <p><span style="color: rgb(108, 117, 125);">&nbsp;Copyright © 2023 By&nbsp;</span><a href="https://bio.link/y3script" target="_blank">y3script</a></p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='js/toolcool-range-slider.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='js/jquery-3.7.0.js')}}"></script>
+    <script>
+        const $slider = document.getElementById('s-length');
+        $slider.addEventListener('change', (evt) => {
+            let p_length = $("#s-length").val()
+            $("#p-length").text(p_length)
+        });
+        $("#Generate").click(()=>{
+            let p_length = $("#s-length").val()
+            let checked =  $("#symbols").is(':checked')
+            form_data = {"length":p_length,"symbols": checked}
+            $.post("/password",form_data,(data)=>{
+                $("#password_result").val(data.password)
+            })
+        })
+    </script>
+</body>
+
+</html>
